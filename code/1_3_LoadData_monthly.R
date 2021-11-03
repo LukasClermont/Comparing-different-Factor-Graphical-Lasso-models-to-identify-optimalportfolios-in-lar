@@ -55,7 +55,7 @@ folder <- "./data/temp/"
 #Load return
 {
   #get stock prices
-  file.return <-  "./data/raw/SP500_EmpiricalData.R"
+  file.return <-  "./data/temp/SP500_EmpiricalData.R"
   load(file.return)
   infostock.data <- data$info
   R.monthly <- data$R.monthly
@@ -89,3 +89,4 @@ folder <- "./data/temp/"
   file.data <- paste0(folder, "Final_Data_Month.R")
   save(file = file.data, data)
 }
+

@@ -64,12 +64,10 @@ folder <- "./data/temp/"
   data$lable_index <- colnames(index.data[-1])
   data$indexinfo <- data$lable_index
   
-  file.data <- paste0(folder, "Final_Data_Day_NEW.R")
-  load(file.data)
   file.data <- paste0(folder, "Final_Data_Day_1.R")
   data1 <- data[1:4]
   save(file = file.data, data1)
   file.data <- paste0(folder, "Final_Data_Day_2.R")
   data2 <- data[5:9]
-  save(file = file.data, data[1:4])
+  save(file = file.data, data2)
 }
