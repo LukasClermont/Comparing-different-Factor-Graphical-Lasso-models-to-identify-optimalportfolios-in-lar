@@ -10,6 +10,7 @@ rm(list = ls())
 }
 #Figure 1: Simple undirected graph
 {
+  set.seed(123)
   gl <- graph_from_literal(A-C-D-B, A-D-E)
   
   plot.basic <- plot.igraph(gl,
@@ -17,7 +18,7 @@ rm(list = ls())
               vertex.label.font=2, vertex.label.color="gray40",
               vertex.label.cex=1, edge.color="gray85")
   
-  png(file="./results/plots/Figure_1_Simple_undirected_graph.png",
+  png(file="./figures/Figure_1_Simple_undirected_graph.png",
       width=500, height=500)
   set.seed(123)
   plot.igraph(gl,
