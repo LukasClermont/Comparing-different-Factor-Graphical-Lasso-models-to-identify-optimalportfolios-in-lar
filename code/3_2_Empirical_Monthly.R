@@ -1,5 +1,5 @@
+#EMPIRICAL EXPERMINET WITH DAILY DATA
 rm(list = ls())
-
 folder <- "./data/temp/final_monthly/"
 file.data <- paste0(folder, "Final_Data_Month.R")
 
@@ -25,98 +25,9 @@ file.data <- paste0(folder, "Final_Data_Month.R")
   F_FF3ETF <- rbind(F_FF3, F_ETF)
   F_Macro <- t(data$Macro[-1])
 }
-#One Period: IS and OOS
-{
-  result = NULL
-  IS.start = 1 
-  i = 1
-  IS.end = IS.start + 120 #ncol(R)
-  windowOOS = 1
-  #---IS---
-  #Equal
-  results.Equal <- fit.model(R, model = "Equal", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
-  #PCA
-  results.PCA <- fit.model(R, K = 3, model = "PCA", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
-  #Farma/French
-  results.FF <- fit.model(R, model = "FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3, OOS.period = windowOOS) 
-  #Sector ETFs
-  results.ETF <- fit.model(R, model = "FF", IS.start = IS.start, IS.end = IS.end, factor = F_ETF, OOS.period = windowOOS)
-  #Farma/French and Sector ETFs
-  results.FFETF <- fit.model(R, model = "FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3ETF, OOS.period = windowOOS)
-  #Macroeconomic Factors
-  results.Macro <- fit.model(R, model = "FF", IS.start = IS.start, IS.end = IS.end, factor = F_Macro, OOS.period = windowOOS)
-  #Glasso
-  results.Glasso <- fit.model(R, model = "Glasso", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
-  #MB
-  results.MB <- fit.model(R, model = "MB", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
-  
-  #FGL using PCA
-  results.FGL.PCA <- fit.model(R, K = 3, lambda = NULL, model = "FGL.PCA", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
-  #FGL using Farma/French
-  results.FGL.FF <- fit.model(R, lambda =  NULL, model = "FGL.FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3, OOS.period = windowOOS) 
-  #FGL using EFTs
-  results.FGL.ETF <- fit.model(R, lambda =  NULL, model = "FGL.FF", IS.start = IS.start, IS.end = IS.end, factor = F_ETF, OOS.period = windowOOS) 
-  #FGL using Farma/French and EFTs
-  results.FGL.FFETF <- fit.model(R, lambda =  NULL, model = "FGL.FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3ETF, OOS.period = windowOOS) 
-  #FGL using Macro
-  results.FGL.Macro <- fit.model(R, lambda =  NULL, model = "FGL.FF", IS.start = IS.start, IS.end = IS.end, factor = F_Macro, OOS.period = windowOOS) 
-  
-  #FMB using PCA
-  results.FMB.PCA <- fit.model(R, K = 3, lambda =  NULL, model = "FMB.PCA", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
-  #FMB using Farma/French
-  results.FMB.FF <- fit.model(R, lambda =  NULL, model = "FMB.FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3, OOS.period = windowOOS) 
-  #FMB using EFTs
-  results.FMB.ETF <- fit.model(R, lambda =  NULL, model = "FMB.FF", IS.start = IS.start, IS.end = IS.end, factor = F_ETF, OOS.period = windowOOS) 
-  #FMB using Farma/French and EFTs
-  results.FMB.FFETF <- fit.model(R, lambda =  NULL, model = "FMB.FF", IS.start = IS.start, IS.end = IS.end, factor = F_FF3ETF, OOS.period = windowOOS) 
-  #FMB using Macroeconomic Factors
-  results.FMB.Macro <- fit.model(R, lambda =  NULL, model = "FMB.FF", IS.start = IS.start, IS.end = IS.end, factor = F_Macro, OOS.period = windowOOS) 
-  
-  results_IS = cbind(results.Equal$results.IS,
-                     results.PCA$results.IS, 
-                     results.FF$results.IS, 
-                     results.ETF$results.IS,
-                     results.FFETF$results.IS,
-                     results.Glasso$results.IS,
-                     results.MB$results.IS,
-                     results.Macro$results.IS,
-                     results.FGL.PCA$results.IS, 
-                     results.FGL.FF$results.IS,
-                     results.FGL.ETF$results.IS,
-                     results.FGL.FFETF$results.IS,
-                     results.FGL.Macro$results.IS,
-                     results.FMB.PCA$results.IS, 
-                     results.FMB.FF$results.IS,
-                     results.FMB.ETF$results.IS,
-                     results.FMB.FFETF$results.IS,
-                     results.FMB.Macro$results.IS)
-  colnames(results_IS) = c("Equal","PCA", "FF", "ETF", "FFETF", "Macro", "Glasso", "MB",
-                           "FGL.PCA", "FGL.FF", "FGL.ETF",  "FGL.FFETF", "FGL.Macro",
-                           "FMB.PCA", "FMB.FF", "FMB.ETF",  "FMB.FFETF", "FMB.Macro")
-  results_OOS = cbind(results.Equal$results.OOS,
-                     results.PCA$results.OOS, 
-                     results.FF$results.OOS, 
-                     results.ETF$results.OOS,
-                     results.FFETF$results.OOS,
-                     results.Macro$results.OOS,
-                     results.Glasso$results.IS,
-                     results.MB$results.IS,
-                     results.FGL.PCA$results.OOS, 
-                     results.FGL.FF$results.OOS,
-                     results.FGL.ETF$results.OOS,
-                     results.FGL.FFETF$results.OOS,
-                     results.FGL.Macro$results.OOS,
-                     results.FMB.PCA$results.OOS, 
-                     results.FMB.FF$results.OOS,
-                     results.FMB.ETF$results.OOS,
-                     results.FMB.FFETF$results.OOS,
-                     results.FMB.Macro$results.OOS)
-  colnames(results_OOS) = c("Equal","PCA", "FF", "ETF", "FFETF", "Macro", "Glasso", "MB",
-                           "FGL.PCA", "FGL.FF", "FGL.ETF",  "FGL.FFETF", "FGL.Macro",
-                           "FMB.PCA", "FMB.FF", "FMB.ETF",  "FMB.FFETF", "FMB.Macro")
-}
 #Rolling Window
 {
+  #Define different dimensions
   #(p,n_I, h)
     parameter.list = list(
       c(15, 30, 12),
@@ -143,6 +54,7 @@ file.data <- paste0(folder, "Final_Data_Month.R")
       windowOOS = h
       windowmax = ncol(Rt)-(windowIS+windowOOS+1)
       i = 1
+      #Loop over each period
       while(i  < windowmax){
         IS.start = i
         IS.end = i + windowIS
@@ -151,13 +63,13 @@ file.data <- paste0(folder, "Final_Data_Month.R")
         results.Equal <- fit.model(Rt, model = "Equal", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
         #Glasso
         results.Glasso <- fit.model(Rt, model = "Glasso", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
-        #MB
+  
+              #MB
         results.MB <- fit.model(Rt, model = "MB", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
         #LW
         results.LW <- fit.model(Rt, model = "LW", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
         #DCC
         results.POET <- fit.model(Rt, model = "POET", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS)
-        
         
         #FGL using PCA
         results.FGL.PCA <- fit.model(Rt, K = 1, lambda =  NULL, model = "FGL.PCA", IS.start = IS.start, IS.end = IS.end, OOS.period = windowOOS) 
@@ -214,6 +126,7 @@ file.data <- paste0(folder, "Final_Data_Month.R")
       }
     }
     
+  #Save results
   result <- unique(result)
   
   file.monthly.results <- paste0("./results/Empirical/monthly/results_monthly_n3060.R")

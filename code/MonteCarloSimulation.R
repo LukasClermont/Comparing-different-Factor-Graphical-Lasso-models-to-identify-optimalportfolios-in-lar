@@ -1,3 +1,5 @@
+#Monte Carlo Simulation analogous to Lee and Seregina (2020)
+
 rm(list = ls())
 #Get functions 
 {
@@ -36,6 +38,7 @@ for(h in c(7,7.5,8,8.5,9,9.5)){
     print(paste0("h: ", h, " - iter: ", iter))
   }
 }
+#Save results
 colnames(result.error) <-c("setseed","h","omegadiff.log2.norm1", "omegadiff.log2.norm2", "weightdiff.log2.norm1", "weightdiff.log2.norm2")
 sum.result <- as.data.frame(result.error) %>% group_by(h) %>% summarise(omegadiff.log2.norm1 = mean(omegadiff.log2.norm1, na.rm = TRUE),
                                                                         omegadiff.log2.norm2 = mean(omegadiff.log2.norm2, na.rm = TRUE),
