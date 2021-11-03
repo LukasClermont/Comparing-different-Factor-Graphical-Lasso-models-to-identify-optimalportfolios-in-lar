@@ -1,11 +1,6 @@
-# for scraping
-library(rvest)
-# blanket import for core tidyverse packages
-library(tidyverse)
-# tidy financial analysis 
-library(tidyquant)
-# tidy data cleaning functions
-library(janitor)
+
+date.start = "2021-01-01"
+date.end = "2021-06-31" 
 
 # get the URL for the wikipedia page with all SP500 symbols
 url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
@@ -23,12 +18,6 @@ sp500tickers <- tickers[[1]]
 sp500tickers = sp500tickers %>% mutate(Symbol = case_when(Symbol == "BRK.B" ~ "BRK-B",
                                                           Symbol == "BF.B" ~ "BF-B",
                                                           TRUE ~ as.character(Symbol)))
-
-# save current system date to a variable
-today <- Sys.Date()
-# subtract 3 months from the current date
-date.start = today %m+% months(-3)
-date.end = today 
 
 get_symbols = function(ticker = "AAPL"){
   df = tq_get(ticker, from = date.start, to = date.end) %>% mutate(symbol = rep(ticker, length(date)))
@@ -59,4 +48,5 @@ data$info = sp500tickers
 data$R = df.prices[-1]
 data$date = df.prices[1]
 
-save(data, file = "./data/raw/SP500_GraphVisualization")
+save(data, file = "./data/temp/SP500_GraphVisualization.R")
+load(file = "./data/temp/SP500_GraphVisualization")
