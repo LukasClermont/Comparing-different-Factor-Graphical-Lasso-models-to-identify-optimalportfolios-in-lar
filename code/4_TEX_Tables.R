@@ -1,5 +1,6 @@
+#TRANSFORM RESULTS TO LATEX TABLES
 rm(list = ls())
-library("Hmisc")
+library(Hmisc)
 library(xtable)
 
 #Get functions 
