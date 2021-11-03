@@ -1,7 +1,7 @@
 rm(list = ls())
 day.start = "1996-01-01"
 day.end = "2021-09-30" 
-folder <- "./data/temp/final_daily/"
+folder <- "./data/temp/"
 #Get functions 
 {
   file.function <- list.files(path = "./code/function")
@@ -36,10 +36,6 @@ folder <- "./data/temp/final_daily/"
       RF = mean(RF / 100)
     )
   FF.factors <- FF.factors %>% filter(date %in% date.daily)
-  
-  file.FF <- paste0(folder, "Data_FF_Day.R")
-  save(file = file.FF, FF.factors)
-  load(file = file.FF)
 }
 #Load index
 {
@@ -47,10 +43,6 @@ folder <- "./data/temp/final_daily/"
   index.data <- get.index.prices.daily(day.start, day.end)
   infoindex.data <- index.data$info
   index.data <- index.data$prices
-  #save stock prices
-  file.index.data <- paste0(folder, "Data_Index_Day.R")
-  save(file = file.index.data, index.data)
-  load(file.index.data)
 }
 #Make list with data
 {

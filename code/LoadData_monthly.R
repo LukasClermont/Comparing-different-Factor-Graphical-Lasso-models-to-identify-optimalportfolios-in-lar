@@ -2,7 +2,7 @@ rm(list = ls())
 day.start = "1996-01-01"
 day.end = "2021-06-30"
 n.stocks = 500
-folder <- "./data/temp/final_monthly/"
+folder <- "./data/temp/"
 #Get functions 
 {
   file.function <- list.files(path = "./code/function")
@@ -32,9 +32,6 @@ folder <- "./data/temp/final_monthly/"
            UNRATE = ((UNRATE/lag(UNRATE) - 1)),
            FEDFUNDS = ((FEDFUNDS/lag(FEDFUNDS) - 1)))
   macro.data <- macro.data[-1,]
-  file.macro <- paste0(folder, "Data_FRED_Month.R")
-  save(file = file.macro, macro.data)
-  load(file = file.macro)
 }
 #Load Fama French Factors (3)
 {
@@ -53,10 +50,6 @@ folder <- "./data/temp/final_monthly/"
     RF = mean(RF / 100)
   )
   FF.factors <- FF.factors %>% filter(date %in% macro.data$date)
-  
-  file.FF <- paste0(folder, "Data_FF_Month.R")
-  save(file = file.FF, FF.factors)
-  load(file = file.FF)
 }
 #Load return
 {
@@ -76,10 +69,6 @@ folder <- "./data/temp/final_monthly/"
   index.data <- get.index.prices.monthly(day.start, day.end)
   infoindex.data <- index.data$info
   index.data <- index.data$prices
-  #save stock prices
-  file.index.data <- paste0(folder, "Data_Index_Month.R")
-  save(file = file.index.data, index.data)
-  load(file.index.data)
 }
 #Make list with data
 {

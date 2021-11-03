@@ -1,21 +1,9 @@
-# for scraping
-library(rvest)
-# blanket import for core tidyverse packages
-library(tidyverse)
-# tidy financial analysis 
-library(tidyquant)
-# tidy data cleaning functions
-library(janitor)
-
+# GET DAILY STOCK DATA
 # get the URL for the wikipedia page with all SP500 symbols
 url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 # use that URL to scrape the SP500 table using rvest
 tickers <- url %>%
-  # read the HTML from the webpage
   read_html() %>%
-  # one way to get table
-  #html_nodes(xpath='//*[@id="mw-content-text"]/div/table[1]') %>%
-  # easier way to get table
   html_nodes(xpath = '//*[@id="constituents"]') %>% 
   html_table()
 #create a vector of tickers
@@ -24,9 +12,7 @@ sp500tickers = sp500tickers %>% mutate(Symbol = case_when(Symbol == "BRK.B" ~ "B
                                                           Symbol == "BF.B" ~ "BF-B",
                                                           TRUE ~ as.character(Symbol)))
 
-# save current system date to a variable
-today <- Sys.Date()
-# subtract 3 months from the current date
+# Set period
 date.start = "1996-01-01"
 date.end = "2021-09-30" 
 
@@ -75,4 +61,4 @@ data$date.daily = date.daily
 data$symbol.daily = symbol.daily
 
 
-save(data, file = "./data/raw/SP500_EmpiricalData.R")
+save(data, file = "./data/temp/SP500_EmpiricalData.R")

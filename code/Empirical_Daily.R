@@ -1,6 +1,6 @@
 rm(list = ls())
 
-folder <- "./data/temp/final_daily/"
+folder <- "./data/temp/"
 file.data <- paste0(folder, "Final_Data_Day.R")
 
 #Get functions 
