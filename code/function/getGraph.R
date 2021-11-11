@@ -1,4 +1,14 @@
+#TRANSFORM THETA INTO A GRAPH
 get.CovtoGraph <- function(Theta, stocknames, G = NULL, weight = NULL){
+  # Input:
+  # Theta -- estimator of the precision matrix
+  # stocknames -- names of the considered stocks
+  # G -- object of an undirected graph
+  # weight -- weights of the portfolio
+  #
+  # Output:
+  # list of an undirected graph and portfolio weights
+  
   diag(Theta) <- 0
   if(all(Theta == 0)== FALSE){
     stockgraph <- Theta

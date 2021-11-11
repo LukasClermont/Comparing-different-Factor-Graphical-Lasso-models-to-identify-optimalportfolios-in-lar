@@ -1,6 +1,15 @@
- # Nodewise estimation of the covariance matrix
-get.MB <- function(R,model){
-    
+# COMPUTE MEINSHAUSEN AND BÜHLMANN ESTIMATOR
+get.MB <- function(R){
+  # Input:
+  # R -- matrix of returns
+  #
+  # Output:
+  # omega -- vector of portfolio weights
+  # Omega -- estimator of precision matrix  
+  # sp -- sparsity of the precision matrix
+  # jbic -- information criterion (GIC)
+  
+  
     # initialization
     R = t(R)
     p <- ncol(R)

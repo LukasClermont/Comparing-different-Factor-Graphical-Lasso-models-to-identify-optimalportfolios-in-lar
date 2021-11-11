@@ -1,4 +1,18 @@
+# COMPUTE FACTOR MODELS. 
+## Note: For statistical factor models set model to "PCA" and for macroeconomic and fundamental factor models set model to "FF".
 get.factormodel <- function(R, model, K = 1, factor = NULL){
+  # Input:
+  # R -- matrix of returns
+  # model -- can be observable ("FF") or unobserble ("PCA")
+  # factor -- matrix of factors when model is "FF"
+  # k -- number of factors
+  #
+  # Output:
+  # omega -- vector of portfolio weights
+  # Omega -- estimator of precision matrix
+  # results.IS -- results of IS measures
+  # results.OOS -- results of OOS measures
+  
   R = as.matrix(R) #R is a pxT matrix
   T = ncol(R) #Number of time periods
   p = nrow(R) #Number of assets
@@ -39,7 +53,7 @@ get.factormodel <- function(R, model, K = 1, factor = NULL){
   
   Sigma_E_diag = diag(diag(Sigma_E))
   Sigma = B_hat %*% Sigma_F %*% t(B_hat) + Sigma_E_diag
-  Omega = get.inv(Sigma)#using solve function of cholevsky inverse
+  Omega = get.inv(Sigma) #includes cholevsky inverse
   
   # compute MVP weights
   omega = get.MVP.weights(Omega)

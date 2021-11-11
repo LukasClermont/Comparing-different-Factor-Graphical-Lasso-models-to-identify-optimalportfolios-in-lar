@@ -7,9 +7,9 @@ The factor graph lasso approach by Lee and Seregina (2021) is applied, providing
 1. statistical factor graphical lasso (SFGL),
 2. statistical factor nodewise regression (SFMB),
 3. fundamental factor graphical lasso (FFGL),
-4. fundamental factor nodewise regression (FFMN),
+4. fundamental factor nodewise regression (FFMB),
 5. macroeconomic factor graphical lasso (MFGL),
-6. macroeconomic factor nodewise regression (MFNR).
+6. macroeconomic factor nodewise regression (MFMB).
 ---------------------
 ## Folder strucutre
 This project is structured as follows: 

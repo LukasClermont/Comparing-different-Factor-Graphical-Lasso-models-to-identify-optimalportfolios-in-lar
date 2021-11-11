@@ -12,10 +12,13 @@ file.data <- paste0(folder, "Final_Data_Day.R")
 }
 #Load data 
 {
-  load(file.data)
+  #load data
+  load(file = "./data/temp/Final_Data_Day_1.R")
+  load(file = "./data/temp/Final_Data_Day_2.R")
+  data <- c(data1, data2)
+  rm(data1, data2)
   R <- t(data$ER)
   date <- data$date
-  #R <- R[1:50,]
   dim(R)
   colnames(R) <- data$date
   

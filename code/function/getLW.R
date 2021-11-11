@@ -1,8 +1,17 @@
-# ledoit wolf version of the squared frobenius norm
+# LEDOIT-WOLF ESTIMATOR
+
+#ledoit wolf version of the squared frobenius norm
 lwfrob <- function(x){sum(diag(tcrossprod(x)))/ncol(x)}
 
 # Estimate Ledoit-Wolf covariance matrix
 get.LW <- function(R){
+  # Input:
+  # R - matrix of returns
+  #
+  # Output:
+  # omega -- vector of portfolio weights
+  # Omega -- estimator of precision matrix
+  
   Y = t(R)
   n <- nrow(Y)
   p <- ncol(Y)

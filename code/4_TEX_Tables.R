@@ -56,7 +56,7 @@ library(xtable)
    geom_bar(stat = "identity")+
    labs(title="",
         x ="# of assets", y = "")
- png(file="./results/plots/plot2_GICS.png",
+ png(file="./figures/plot2_GICS.png",
      width=600, height=350)
  plot.GICS
  dev.off()
@@ -75,7 +75,7 @@ library(xtable)
 }
 #Compare Factor and Factor Graphical Models - Monthly
 {
-  file.monthly.results <- paste0("./results/Empirical/monthly/results_monthly_Factor_FGL_sum.R")
+  file.monthly.results <- paste0("./results/results_monthly_Factor_FGL_sum.R")
   load(file = file.monthly.results)
   data.monthly <- result.sum %>% gather("model", "var", - pn, -h,-p,-n)
   data.monthly <- data.monthly %>% 
@@ -95,9 +95,9 @@ library(xtable)
     xlab("p / n")+
     theme_minimal()+ 
     scale_color_manual(values=c("#4d6941", "#4896a7", "#4a3341"))+ 
-    theme(legend.position="bottom", legend.title = element_blank())
+    theme(legend.position="bottom", legend.title = element_blank(),text = element_text(size=20))
   
-  png(file="./results/plots/plot4_CompareFactorGraphicalFactor_new.png",
+  png(file="./figures/Figure_4_Comparing_Factor_and_Factor_Graphical_Models.png",
       width=1000, height=500)
   ggplot.Compare
   dev.off()

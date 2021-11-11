@@ -1,5 +1,5 @@
 #PLOT UNDIRECTED GRAPHICAL MODELS
-#Figures 1,2,6
+#Figures 1,2,3,6
 rm(list = ls())
 #load functions 
 {

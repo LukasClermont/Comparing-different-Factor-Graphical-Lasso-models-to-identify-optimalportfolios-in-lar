@@ -1,5 +1,4 @@
 graphicalLasso <- function(S, rho = 0.1, maxIt = 1e2, tol = 1e-3){
-  # minimize_{Theta > 0} tr(S*Theta) - logdet(Theta) + rho * ||Theta||_1
   # Source: Friedman et al. (2007) 
   # Note: lasso Shooting function
   # Input:

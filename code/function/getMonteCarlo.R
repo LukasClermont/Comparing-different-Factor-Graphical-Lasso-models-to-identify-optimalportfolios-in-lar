@@ -1,5 +1,18 @@
+# COMPUTE MONTE CARLO SIMULATION
+
+# Simulate dataset
 get.hugesim <- function (n, d, v, u, prob) 
 {
+  # Input:
+  # n -- number of observations
+  # d -- number of assets
+  # v -- v controls the magnitude of partial correlationsparameter (default value 0.3)
+  # u -- positive number added to the diagonal of the precision matrix to control the magnitude of partial correlations (default value 0.1)
+  # prob -- popability that an enty of the matrix is zero
+  #
+  # Output:
+  # Omega -- simulation of the precision matrix
+  
   #Define a p x p adjacency matrix A which is used to represent the structure of the graph
   theta = matrix(0, d, d)
   tmp = matrix(runif(d^2,min = 0, max = 0.5), d, d)
@@ -23,10 +36,20 @@ get.hugesim <- function (n, d, v, u, prob)
 }
 
 get.MonteCarlo <- function(delta, h, u, v, setseed, dim){
+  # Input:
+  # delta -- parameter for the size of p (p = 3* T^delta)
+  # n -- number of observations
+  # p -- number of assets
+  # v -- v controls the magnitude of partial correlationsparameter (default value 0.3)
+  # u -- positive number added to the diagonal of the precision matrix to control the magnitude of partial correlations (default value 0.1)
+  # K -- number of common factors
+  #
+  # Output:
+  # sim -- simulated dataset
   set.seed(setseed)
   T = round(2^h)
-  p = round(T^delta) #3*
-  q = 0.2#control sparsity:1/(p*T^0.8)
+  p = 3*round(T^delta)
+  q = 1/(p*T^0.8)
   K = round(2*(log(T))^0.5)
   #Simulate sparse matrix
   sim.mc <- get.hugesim(

@@ -1,9 +1,19 @@
-#Factor Graphica Lasso
+# COMPUTE FACTOR GRAPHICAL MODEL WITH MEINSHAUSEN AND BÜHLMANN ESTIMATOR
+## Note: In order to compute a statistical factor model set the variable model to "FMB.PCA" and for macroeconomic and fundamental factor model to "FMB.FF".
 get.FMB <- function(R, model, K=1, factor =NA){
+  # Input:
+  # R -- matrix of returns
+  # model -- can be observable ("FF") or unobserble ("PCA")
+  # k -- number of factors
+  # factor -- matrix of observable factors
+  #
+  # Output:
+  # omega -- vector of portfolio weights
+  # Omega -- estimator of precision matrix
   
   R = as.matrix(R)
   
-  #1. Fit model for PCA or Farma/French
+  #1. Fit factor model for PCA or observable factors
   if(model == "FMB.PCA"){
     result <- get.factormodel(R = R, model = "PCA", K = K)
   } else if (model == "FMB.FF" && !is.null(factor)){

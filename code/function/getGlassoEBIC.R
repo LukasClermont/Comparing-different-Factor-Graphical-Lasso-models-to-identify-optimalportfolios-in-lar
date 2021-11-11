@@ -1,4 +1,18 @@
+# CALCULATE GLASSO USING EBIC
 get.GlassoEBIC <- function(R, model , lambda =NULL , lambda.min.ratio = 0.001,   nlambda = 20, choice = FALSE){
+  # Input:
+  # R -- matrix of returns
+  # model -- can be observable ("FF") or observable ("PCA")
+  # lambda -- penalty term, if "NULL" lambda is calculated using the eBIC
+  # lambda.min.ratio -- minimum lambda for grid search to calculate EBIC
+  # nlambda -- number of lambda candidates for grid search to calculate EBIC
+  # choice -- False to calculate Glasso
+  #
+  # Output:
+  # omega -- vector of portfolio weights
+  # Omega -- estimator of precision matrix
+  # lambda -- if not predefined it is calculated by eBIC
+  
   S = get.cov(R)
   #Grid for lambda (code taken from huge package)
   lambda.max = max(max(S - diag(nrow(S))), -min(S - diag(nrow(S))))
@@ -52,7 +66,6 @@ logGaus <- function(S,K,n){
 }
 
 # Computes the EBIC:
-
 get.EBIC <- function(S,K,n,gamma = 1,E,countDiagonal=FALSE){
   L <- logGaus(S, K, n)
   if (missing(E)){

@@ -1,3 +1,4 @@
+#LOAD REQUIRED PACKAGES
 packages <- c("tidyverse", #Data analysis 
               "tidyquant", #Import from Yahoo Fianance
               "MASS","huge", "Rcpp",#Monte Carlo
