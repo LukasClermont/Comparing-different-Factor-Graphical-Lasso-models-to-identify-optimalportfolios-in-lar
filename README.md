@@ -3,13 +3,13 @@
 ### Topic contributer:  Prof.  Dr.  Roman Liesenfeld
 ---------------------
 ## Description
-The factor graphical approach by Lee and Seregina (2021) is applied, providing a framework for the estimation of high dimensional precision matrices in order to optimize portfolio return. It combines a factor approach with a graphical approach. In the factor estimation step, macroeconomic, fundamental and statistical factors are taken into account. The observable factors are sourced from the Yahoo Finance database and the website https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html. Principal Component Analysis (PCA) is applied as the statistic factor model. For the estimation of the graph for the precision matrix of error terms, the graph structure is estimated by the Meinshausen-Buhlmann graph estimation or the graphical lasso. This results in the following factor graphical models: 
-1. statistical factor graphical lasso (SFGL),
-2. statistical factor nodewise regression (SFMB),
-3. fundamental factor graphical lasso (FFGL),
-4. fundamental factor nodewise regression (FFMB),
-5. macroeconomic factor graphical lasso (MFGL),
-6. macroeconomic factor nodewise regression (MFMB).
+The factor graphical approach by Lee and Seregina (2021) is applied, providing a framework for the estimation of high dimensional precision matrices in order to optimize portfolio return. It combines a factor approach with a graphical approach. In the factor estimation step, macroeconomic, fundamental and statistical factors are taken into account. The observable factors are sourced from the Yahoo Finance database and the website https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html. Principal Component Analysis (PCA) is applied as the statistic factor model. The graph structure is estimated by the Meinshausen-Buhlmann estimator or the graphical lasso. This results in the following factor graphical models: 
+1. Statistical factor graphical lasso (SFGL),
+2. Statistical factor nodewise regression (SFMB),
+3. Fundamental factor graphical lasso (FFGL),
+4. Fundamental factor nodewise regression (FFMB),
+5. Macroeconomic factor graphical lasso (MFGL),
+6. Macroeconomic factor nodewise regression (MFMB).
 ---------------------
 ## Folder strucutre
 This project is structured as follows: 
